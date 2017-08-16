@@ -1,0 +1,71 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '1.5.4.RELEASE'    
+    id 'nebula.ospackage' version '3.7.0'
+    id 'maven-publish'
+    id 'jacoco'
+}
+
+version = '0.1.0'
+group = 'com.openet.rao2100'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+springBoot {
+    executable = true
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '4.0'
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled false
+        csv.enabled false
+        html.destination "${buildDir}/jacocoHtml"
+    }
+}
+
+def localMavenRepoRelease='http://artifactory.rao2100.lan:8081/artifactory/modules-release'
+
+
+repositories {
+
+    //    maven {
+    //        url localMavenRepoRelease
+    //    }
+    jcenter()
+    mavenCentral() 
+    
+}
+
+dependencies {
+    
+    //spring dependencies
+    compile("org.springframework.boot:spring-boot-starter-web") {
+        exclude module: "spring-boot-starter-tomcat"
+    }
+    //    compile("org.springframework.boot:spring-boot-starter-jetty")
+    compile("org.springframework.boot:spring-boot-starter-actuator")    
+    
+    // https://mvnrepository.com/artifact/org.apache.commons/commons-csv
+    compile group: 'org.apache.commons', name: 'commons-csv', version: '1.4'
+    
+    // https://mvnrepository.com/artifact/commons-io/commons-io
+    compile group: 'commons-io', name: 'commons-io', version: '2.5'
+    
+    // https://mvnrepository.com/artifact/commons-validator/commons-validator
+    compile group: 'commons-validator', name: 'commons-validator', version: '1.6'
+    
+
+    testCompile("junit:junit")
+    //    testCompile 'org.mockito:mockito-all:1.10.19'
+    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-test
+    testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test'
+
+    
+}
+
+defaultTasks 'clean', 'build'
