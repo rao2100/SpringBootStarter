@@ -7,10 +7,15 @@ plugins {
 }
 
 version = '0.1.0'
-group = 'com.openet.rao2100'
+group = 'com.rao2100.starter'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
+
+jar {
+    baseName = 'spring-starter'
+    version =  '0.2.0'
+}
 
 springBoot {
     executable = true
@@ -22,14 +27,13 @@ task wrapper(type: Wrapper) {
 
 jacocoTestReport {
     reports {
-        xml.enabled false
-        csv.enabled false
+        xml.enabled true
+        csv.enabled true
         html.destination "${buildDir}/jacocoHtml"
     }
 }
 
-def localMavenRepoRelease='http://artifactory.rao2100.lan:8081/artifactory/modules-release'
-
+//def localMavenRepoRelease='http://artifactory.rao2100.lan:8081/artifactory/modules-release'
 
 repositories {
 
