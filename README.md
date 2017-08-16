@@ -6,6 +6,11 @@ To clean and build:
 ./gradlew
 ```
 
+To run:
+```bash
+java -jar build/libs/spring-starter-0.2.0.jar
+```
+
 To generate test report:
 ```bash
 ./gradlew jacocoTestReport
