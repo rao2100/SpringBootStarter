@@ -1,0 +1,15 @@
+## YAML Template.
+---
+rsync: 
+    path: /usr/bin/rsync    
+    timeout: 100
+
+    locationList:    
+        -
+            source: /tmp/src1
+            destination: /tmp/dest1
+        -
+            source: /tmp/src2
+            destination: /tmp/dest2
+    
+        
